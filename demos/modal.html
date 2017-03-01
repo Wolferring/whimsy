@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title></title>
+   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+   <script src="node_modules/jquery/dist/jquery.min.js"></script>
+   <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+   <style>
+作者：孟子易
+链接：https://zhuanlan.zhihu.com/p/24784515
+来源：知乎
+著作权归作者所有，转载请联系作者获得授权。
+
+body:before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:auto;
+    background:#fff;
+    z-index:999;
+    animation-name:bg;
+    animation-duration:2s;
+    animation-timing-function:ease;
+    animation-iteration-count:1;
+    animation-fill-mode:forwards;
+}
+@keyframes bg{
+    0%{
+        height:100vh;
+    }
+    80%{
+        height:100vh;
+    }
+    100%{
+        height:0vh;
+        display:none;
+    }
+}
+/*这是前面的动画效果*/
+body:after{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    right:auto;
+    bottom:auto;
+    height:2px;
+    background:#6cf;
+    z-index:1000;
+    animation-name:animate;
+    animation-duration:1.6s;
+    animation-timing-function:ease;
+    animation-iteration-count:1;
+    animation-fill-mode:forwards;
+}
+@keyframes animate{
+    0%{
+      width:0vw;
+    }
+    50%{
+      width:50vw;
+    }
+    80%{
+      width:50vw;
+    }
+    95%{
+      width:100vw;
+      height:2px;
+    }
+    100%{
+      width:100vw;
+      height:0vh;
+    }
+}   
+      ul.dropdown-menu li ul.dropdown-menu{
+         left:100%;
+         top:-3px;
+         min-height: 100%;
+      }
+      ul.dropdown-menu .glyphicon{
+         font-size: 8px;
+         line-height: 1.42857143;
+      }
+      textarea.form-control{
+         resize: none;
+      }
+      .modal i.glyphicon{
+         cursor: pointer;
+      }
+   </style>
+</head>
+<body>
+   <!-- 模态框（Modal） -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+               模态框（Modal）标题
+            </h4>
+         </div>
+         <div class="modal-body">
+            <div class="container-fluid">
+               <form action="index.htm" method="POST" class="form-horizontal">
+                  <div class="panel panel-default">
+                     <div class="panel-heading">
+                        <i class="glyphicon glyphicon-chevron-down" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample"></i>
+
+                        123123
+                     </div>
+                     <div class="panel-body collapse in" id="collapseExample">
+                        <div class="form-group col-md-12">
+                           <label for="" class="control-label col-md-2">123123213</label>
+                           <div class="col-md-6">
+                              <input type="text" class="form-control">
+                           </div>
+                           <div class="btn-group col-md-4">
+                               <button type="button" class="btn btn-default active">Middle</button>
+                               <button type="button" class="btn btn-default">Right</button>
+                               <button type="button" class="btn btn-default">Right</button>
+                           </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                           <label for="" class="control-label col-md-2">2</label>
+                           <div class="col-md-6">
+                              <input type="text" class="form-control">
+                              
+                           </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                           <label for="" class="control-label col-md-2">3</label>
+                           <div class="col-md-6">
+                              <select name="" class="form-control">
+                                 <option value="">1</option>
+                                 <option value="">2</option>
+                              </select>
+                           </div>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                           <label for="" class="control-label col-md-2">State</label>
+                           <div class="btn-group col-md-6">
+                              <button type="button" class="btn btn-default active">Enable</button>
+                              <button type="button" class="btn btn-default">Disable</button>
+                           </div>
+                        </div>
+                     </div>
+
+                  </div>
+                  <div class="panel panel-default">
+                     <div class="panel-heading">
+                        <i class="glyphicon glyphicon-chevron-down" data-toggle="collapse" data-target="#collapse-title" aria-expanded="true" ></i>
+                        Title
+                        <i class="glyphicon glyphicon-plus pull-right modal-add-item" title="Add"></i>
+                     </div>
+                     <div class="panel-body collapse in" id="collapse-title">
+                           <div class="form-group col-md-10">
+                                 <div class="col-md-10">
+                                    <input type="text" class="form-control" maxlength="255">
+                                 </div>
+                           </div>
+                     </div>                     
+                     <script type="text/plain">
+                           <div class="form-group col-md-10">
+                                 <div class="col-md-10">
+                                    <input type="text" class="form-control" maxlength="255">
+                                 </div>
+                                 <label for="" class="control-label col-md-1">
+                                    <i class="glyphicon glyphicon-remove modal-remove-item" title="Remove"></i>
+                                 </label>
+                           </div>
+                     </script>
+
+                  </div>
+                  <div class="panel panel-default">
+                     <div class="panel-heading">
+                        <i class="glyphicon glyphicon-chevron-down" data-toggle="collapse" data-target="#collapse-message" aria-expanded="true" ></i>
+                        Messages
+                        <i class="glyphicon glyphicon-plus pull-right modal-add-item" title="Add"></i>
+                     </div>
+                     <div class="panel-body collapse in" id="collapse-message">
+                        <div class="form-group col-md-10">
+                              <div class="col-md-10">
+                                 <textarea type="text" class="form-control"></textarea>
+                              </div>
+                        </div>
+                     </div>                        
+                     <script type="text/plain">
+                        <div class="form-group col-md-10">
+                              <div class="col-md-10">
+                                 <textarea type="text" class="form-control"></textarea>
+                              </div>
+                              <label for="" class="control-label col-md-1">
+                                 <i class="glyphicon glyphicon-remove modal-remove-item" title="Remove"></i>
+                              </label>
+                        </div>
+                     </script>
+
+                  </div>
+                  <div class="panel panel-default">
+                     <div class="panel-heading">
+                        <i class="glyphicon glyphicon-chevron-down" data-toggle="collapse" data-target="#collapse-images" aria-expanded="true" aria-controls="collapseExample"></i>
+                        Images
+                     </div>
+                     <div class="panel-body collapse in" id="collapse-images">
+                        <div class="form-group col-md-10">
+                              <div class="col-md-10">
+                                 <input type="file" class="form-control" accept="image/*" />
+                              </div>
+                        </div>
+                     </div>
+
+                  </div>
+               </form>
+            </div>
+
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" 
+               data-dismiss="modal">关闭
+            </button>
+            <button type="submit" class="btn btn-primary">
+               提交更改
+            </button>
+         </div>
+      </div><!-- /.modal-content -->
+</div><!-- /.modal -->
+</div>
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Dropdown
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li>
+      <a href="#">Action<i class="glyphicon glyphicon-triangle-right pull-right"></i></a>
+
+      <ul class="dropdown-menu">
+         <li>
+            <a href="#">123</a>
+         </li>
+         <li>
+            <a href="#">456<i class="glyphicon glyphicon-triangle-right pull-right"></i> </a>
+            <ul class="dropdown-menu">
+               <li><a href="#">789</a></li>
+            </ul>
+         </li>
+
+      </ul>
+    </li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+</body>
+<script>
+   listnerBinder();
+   function listnerBinder(){
+      var hoverTimer
+      $(document).on('click','.btn-group .btn',function(){
+         if ($(this).hasClass('active')) {return ;}
+         $(this).addClass('active').siblings('.btn').removeClass('active')
+      });
+      $(document).on('click','.modal button[type="submit"]',function(){
+         $(this).parent().siblings('.modal-body').find('form').submit()
+      })
+
+
+
+      $(document).on('mouseenter','ul.dropdown-menu li',function(){
+         $(this).children('ul.dropdown-menu').show()
+      })
+      $(document).on('mouseleave','ul.dropdown-menu li',function(){
+         var $that = $(this)
+         clearTimeout(hoverTimer);
+         hoverTimer =  setTimeout(function(){
+            $that.children('ul.dropdown-menu').hide()
+         },200)
+      })
+      $(document).on('click','ul.dropdown-menu li',function(e){
+         e.stopPropagation()
+         e.preventDefault()
+      })
+
+      $(document).on('click', '.modal-remove-item', function(event) {
+         event.preventDefault();
+         $(this).parent().parent('.form-group').remove()
+      });
+      $(document).on('click', '.modal-add-item', function(event) {
+         event.preventDefault();
+         var $this = $(this)
+         var html = $this.parent().parent().find('script').html()
+         /* Act on the event */
+         $this.parent().siblings('.panel-body').append(html)
+      });
+      // 7月25日
+      
+   }
+</script>
+</html>

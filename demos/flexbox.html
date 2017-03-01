@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Flexbox demo</title>
+</head>
+<style type="text/css">
+	html{
+		font-size: 16px;
+	}
+	footer{
+		display: -webkit-flex;
+		display: flex;
+		flex-flow: row wrap;
+		width: 80%;
+		height: 700px;
+		border:1px solid red;
+		justify-content: space-between;
+		align-content: space-around;
+		align-items: ;
+	}
+	footer .footer-item{
+		height: 100px;
+		background-color: #45a1e2;
+		flex:1 0 10rem;
+		outline: 1px solid white;
+	}
+</style>
+<body>
+	<footer>
+		<div class="footer-item">1</div>
+		<div class="footer-item">2</div>
+		<div class="footer-item">3</div>
+		<div class="footer-item">4</div>		<div class="footer-item">4</div>		<div class="footer-item">4</div>		<div class="footer-item">4</div>		<div class="footer-item">4</div>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Eptonic</title>
+	<link rel="stylesheet" href="">
+	<style>
+		article,aside,ul,div,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{margin:0;padding:0;display:block;}audio,canvas,video{display:inline-block;}audio:not([controls]){display:none;height:0;}[hidden]{display:none;}html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}body{margin:0;}a:focus{outline:thin dotted;}a:active,a:hover{outline:0;}h1{font-size:2em;margin:0.67em 0;}abbr[title]{border-bottom:1px dotted;}b,strong{font-weight:bold;}dfn{font-style:italic;}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0;}mark{background:#ff0;color:#000;}code,kbd,pre,samp{font-family:monospace,serif;font-size:1em;}pre{white-space:pre-wrap;}q{quotes:"\201C" "\201D" "\2018" "\2019";}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-0.5em;}sub{bottom:-0.25em;}img{border:0;}svg:not(:root){overflow:hidden;}figure{margin:0;}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:0.35em 0.625em 0.75em;}legend{border:0;padding:0;}button,input,select,textarea{font-family:inherit;font-size:100%;margin:0;}button,input{line-height:normal;}button,select{text-transform:none;}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer;}button[disabled],html input[disabled]{cursor:default;}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0;}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}textarea{overflow:auto;vertical-align:top;}table{border-collapse:collapse;border-spacing:0;}
+		li{text-decoration:none;list-style:none;display: block;}
+		html{
+			height: 100%;
+			width: 100%;
+			overflow: hidden;
+		}
+		body{
+			background: url("bg.png");
+			background-position: left;
+			-webkit-background-size: cover;
+			background-size: cover;
+			background-repeat: no-repeat;
+			height: 100%;
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			font-family: "Microsoft Yahei","verdana";
+			position: relative;
+		}
+		.article{
+			text-align: center;
+			color: #FFEF1A;
+			position: relative;
+			z-index: 999;
+			margin-top: 20px;
+		}
+		.article h1{
+			margin: 0;
+		}		
+		.article h2{
+			font-size: 36px;
+			font-weight: normal;
+			margin: 10px 0;
+		}
+		.fixed{
+			position: absolute;
+		}
+		#left-flower{
+			left: 0px;
+			top: 0;
+			z-index: 10;
+		}
+		#right-point{
+			right: 0;
+			top: 0;
+			z-index: 9;
+		}
+		#left-denglong{
+			left: 0;
+			top: -100px;
+			max-width:500px ;
+			z-index: 11;
+			margin-left: 50px;
+		}
+		#right-fu{
+			right: 0;
+			bottom: 0;
+
+		}
+		#left-fu{
+			left: 0;
+			bottom: 0;
+			z-index: 9;
+
+		}
+		#bottom-time{
+			bottom: 20px;
+			right: 20px;
+		}
+		#top-time{
+			top: 0px;
+			right: 0px;
+			z-index: 11;
+		}				
+	</style>
+</head>
+<body>
+	<img src="left-bg.png" id="left-flower" alt="" class="fixed left">
+	<img src="8_03.png" id="left-denglong" alt="" class="fixed left">
+
+	<img src="dian_06.png" id="right-point" alt="" class="fixed right">
+	<img src="9_09.png" id="right-fu" alt="" class="fixed right">
+	<img src="fu_06.png" id="left-fu" alt="" class="fixed left">
+	<img src="2_11.png" class="fixed" id="bottom-time" alt="">
+	<img src="ji_06.png" class="fixed" id="top-time" alt="">
+
+	<div class="article">
+		<h1>
+			<img src="2_03.png" alt="">
+		</h1>
+		<h1>
+			<img src="2_07.png" alt="">
+		</h1>
+		<h2>
+			XXX升迁为XXX的XXX
+		</h2>
+		<h2>
+			XXX升迁为XXX的XXX
+		</h2>		
+	</div>
+</body>
+<script src="jquery.js?v=1"></script>
+<script>
+	jQuery(document).ready(function($) {
+		var w = $(window).width();
+		var h = $(window).height();
+		$('body').on('mousemove', function(e) {
+			e.preventDefault();
+			var xx = e.originalEvent.x || e.originalEvent.layerX || 0; 
+			var yy = e.originalEvent.y || e.originalEvent.layerY || 0; 
+			$('#left-flower').css('left',((w/2-xx)/90-30)+"px" );
+			$('#left-denglong').css('left',((w/2-xx)/30-0)+"px" );
+			$('#left-fu').css('left',((w/2-xx)/120-30)+"px" );
+
+			$('#right-point').css('right',((xx-w/2)/90-30)+"px" );
+
+			$('#right-fu').css('right',((xx-w/2)/30-30)+"px" );
+			// $('.fixed').css('top',((yy-w/2)/40-30)+"px" );
+
+
+
+			/* Act on the event */
+		});
+	});
+</script>
+</html>

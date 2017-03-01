@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>组合模式</title>
+	<style>
+		html{
+			height: 100%;
+		}
+		body{
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<button id="execute">start</button>
+
+	<script>
+
+	var MacroCommand = function(){
+		return {
+			commandList:[],
+			add:function(func){
+				this.commandList.push(func)
+			},
+			execute:function(){
+				for(var i = 0,command;command = this.commandList[i++];){
+					command.execute();
+				}
+			}
+		}
+	}
+
+
+	var openAcCommand = {
+		execute:function(){
+			console.log("Open AC")
+		}
+	}
+	var openTvCommand = {
+		execute:function(){
+			console.log('Open TV')
+		}
+	}
+	var openSoundCommand = {
+		execute:function(){
+			console.log('Open Sound')
+		}
+	}
+
+	var macroCommand1 = MacroCommand();
+	macroCommand1.add(openTvCommand);
+	macroCommand1.add(openSoundCommand)
+
+	var closeDoorCommand = {
+		execute:function(){
+			console.log("Close Door")
+		}
+	}
+	var openPcCommand = {
+		execute:function(){
+			console.log('Open PC')
+		}
+	}
+	var openQQCommand = {
+		execute:function(){
+			console.log('Open QQ')
+		}
+	}
+
+	var clearConsoleCommand = {
+		execute:function(){
+			console.clear();
+			console.log((new Date()).toLocaleString())
+		}
+	}
+	var macroCommand2 = MacroCommand();
+	macroCommand2.add(closeDoorCommand);
+	macroCommand2.add(openPcCommand);
+	macroCommand2.add(openQQCommand);
+
+	var macroCommand = MacroCommand();
+	macroCommand.add(clearConsoleCommand)
+	macroCommand.add(openAcCommand);
+	macroCommand.add(macroCommand1)
+	macroCommand.add(macroCommand2)
+	var setCommand = (function(cmd){
+		document.getElementById("execute").onclick = function(){
+			cmd.execute();
+		}
+	})(macroCommand)
+	</script>
+</body>
+</html>

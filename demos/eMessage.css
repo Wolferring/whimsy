@@ -1,0 +1,24 @@
+#eMessage {
+  text-align: center;
+  padding: 0 10px;
+}
+#eMessage .message-box-control {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+#eMessage .message-box-form {
+  display: none;
+  padding: 10px 0;
+}
+#eMessage .message-box-form input {
+  width: 70%;
+  color: #000;
+  padding-left: 10px;
+}
+#eMessage .message-box-form label {
+  width: 30%;
+  color: inherit;
+  text-align: right;
+  padding-right: 15px;
+}

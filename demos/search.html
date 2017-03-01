@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Search</title>
+	<link rel="stylesheet" href="">
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+		}
+		body{
+			font-size: 12px;
+			font-family: verdana,"Microsoft Yahei";
+		}
+		ul,li,ol{
+			list-style: none;
+		}
+		.search-group{
+			position: relative;
+			padding:10px;
+			display: inline-block;
+		}
+		.search-group select{
+			display: none;
+		}
+		.search-group input{
+			width: 190px;
+			height: 28px;
+			font-size: 14px;
+			padding-left: 10px;
+			border:1px solid #ccc;
+
+		}
+		.search-group ul{
+			position: absolute;
+			border:1px solid #ccc;
+			border-bottom: none;
+			width: 200px;
+			background: #fff;
+			top: 39px;
+			right: 10px;
+			max-height: 188px;
+			overflow-y: auto;
+			z-index: 99;
+			font-size: inherit;
+			display: none;
+		}
+		.search-group ul li{
+			height: 30px;
+			line-height: 30px;
+			padding-left: 10px;
+			border-bottom: 1px solid #ccc;
+			cursor: pointer;
+		}
+		.search-group ul li:hover,.search-group ul li.active{
+			background-color: #eee;
+		}
+	</style>
+	<script type="text/javascript" src="searchSelect.min.js"></script>
+</head>
+<body>
+	<span class="search-group">
+		<label for="">name</label>
+		<select name="1">
+			<option value="1" >tom</option>
+			<option value="2" >tony</option>
+			<option value="3" >mary</option>
+			<option value="4" >name</option>
+			<option value="5" >set</option>
+			<option value="6" >get</option>
+			<option value="7" >past</option>
+			<option value="8" >test</option>
+			<option value="9" >today</option>
+			<option value="0" >百度</option>
+		</select>
+	</span>
+	<!-- search-group不能有id -->
+	<div class="search-group">
+		<label for="">company</label>
+		<select name="2">
+			<option value="0001">百度</option>
+			<option value="0002">谷歌</option>
+			<option value="0003">腾讯</option>
+			<option value="0004">阿里巴巴</option>
+			<option value="0005">阿里巴巴</option>
+			<option value="0006">美团</option>
+		</select>
+	</div>
+	<div class="search-group">
+		<label for="">company</label>
+		<select name="2">
+			<option value="0001">百度</option>
+			<option value="0002">谷歌</option>
+			<option value="0003">腾讯</option>
+			<option value="0004">阿里巴巴</option>
+			<option value="0005">阿里巴巴</option>
+			<option value="0006">美团</option>
+		</select>
+	</div>
+	<div class="search-group">
+		<label for="">company</label>
+		<select name="2">
+			<option value="0001">百度</option>
+			<option value="0002">谷歌</option>
+			<option value="0003">腾讯</option>
+			<option value="0004">阿里巴巴</option>
+			<option value="0005">阿里巴巴</option>
+			<option value="0006">美团</option>
+		</select>
+	</div>
+	<div class="search-group">
+		<label for="">company</label>
+		<select name="2">
+			<option value="0001">百度</option>
+			<option value="0002">谷歌</option>
+			<option value="0003">腾讯</option>
+			<option value="0004">阿里巴巴</option>
+			<option value="0005">阿里巴巴</option>
+			<option value="0006">美团</option>
+		</select>
+	</div>
+	<div class="search-group">
+		<label for="">company</label>
+		<select name="2">
+			<option value="0001">百度</option>
+			<option value="0002">谷歌</option>
+			<option value="0003">腾讯</option>
+			<option value="0004">阿里巴巴</option>
+			<option value="0005">阿里巴巴</option>
+			<option value="0006">美团</option>
+		</select>
+	</div>
+	<div class="search-group">
+		<label for="">company</label>
+		<select name="2">
+			<option value="0001">百度</option>
+			<option value="0002">谷歌</option>
+			<option value="0003">腾讯</option>
+			<option value="0004">阿里巴巴</option>
+			<option value="0005">阿里巴巴</option>
+			<option value="0006">美团</option>
+		</select>
+	</div>
+	<div class="search-group">
+		<label for="">company</label>
+		<select name="2">
+			<option value="0001">百度</option>
+			<option value="0002">谷歌</option>
+			<option value="0003">腾讯</option>
+			<option value="0004">阿里巴巴</option>
+			<option value="0005">阿里巴巴</option>
+			<option value="0006">美团</option>
+		</select>
+	</div>
+	<script>
+		search.init()
+	</script>
+</body>
+</html>
