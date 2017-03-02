@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>发布订阅模式</title>
+	<style>
+		html{
+			height: 100%;
+		}
+		body{
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<button id="count">Click</button>
+	<div id="show"></div>
+	<button id="off">Off</button>
+	<script>
+		// var event = {
+		// 	clientList:{},
+		// 	listen:function(key,fn){
+		// 		if (!this.clientList[key]){
+		// 			this.clientList[key] = [];
+		// 		}
+		// 		this.clientList[key].push(fn);
+		// 	},
+		// 	trigger:function(){
+		// 		var key = Array.prototype.shift.call(arguments),
+		// 			fn = this.clientList[key];
+		// 		if(!fn || fn.length<=0){
+		// 			return false;
+		// 		}
+		// 		for(var i=0,func;func = fn[i++]; ){
+		// 			func.apply(this,arguments)
+		// 		}
+				
+		// 	},
+		// 	remove:function(key,fn){
+		// 		var fns = this.clientList[key];
+		// 		if (!fns) {
+		// 			return false;
+		// 		}
+
+		// 		if(!fn){
+		// 			fns&&(fns.length = 0);//取消所有
+		// 		}else{
+		// 			for(var i = fns.length-1;i>=0;i--){
+		// 				if(fns[i] === fn){
+		// 					fns.splice(i,1)
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+
+		// }
+		// var installEvent = function(obj){
+		// 	for(var i in event){
+		// 		obj[i] = event[i];
+		// 	}
+		// }
+		// var salesOffice = {};
+		// installEvent(salesOffice)
+		// salesOffice.listen("sq1",fn1 = function(price){
+		// 	console.log("Price:"+price);
+		// })
+		// salesOffice.listen("sq2",fn2 = function(price){
+		// 	console.log("Price:"+price);
+		// })
+		// salesOffice.remove('sq1',fn1)		
+		// salesOffice.trigger('sq2',90)
+		// var Event = (function(){
+		// 	var clientList = {},
+		// 		listen,
+		// 		remove,
+		// 		trigger;
+		// 	listen = function(key,fn){
+		// 		if(!clientList[key]){
+		// 			clientList[key] = [];
+		// 		}
+		// 		clientList[key].push(fn);
+		// 		return fn;
+		// 	}
+
+		// 	trigger = function(){
+		// 		var key = Array.prototype.shift.call(arguments),
+		// 			fns = clientList[key];
+		// 		if(!fns||fns.length<=0){
+		// 			return false;
+		// 		}
+		// 		for(var i = 0,fn;fn = fns[i++];){
+		// 			fn.apply(this,arguments)
+		// 		}
+		// 	}
+
+		// 	remove = function(key,fn){
+		// 		var fns = clientList[key];
+		// 		if (!fns) {
+		// 			return false
+		// 		}
+		// 		if(!fn){
+		// 			fns&&(fns.length = 0);
+		// 		}else{
+		// 			for(var i = fns.length-1;i>=0;i--){
+		// 				if(fns[i]===fn){
+		// 					fns.splice(i,1)
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+
+		// 	return {
+		// 		listen:listen,
+		// 		trigger:trigger,
+		// 		remove:remove
+		// 	};
+
+		// })()
+		// Event.listen('sq1',function(price){
+		// 	console.log(price)
+		// })
+		// Event.trigger('sq1',5000)
+
+		// var a = (function(){
+		// 	var count = 0;
+		// 	var btn = document.getElementById("count");
+		// 	btn.onclick = function(){
+		// 		Event.trigger('add',count++)
+		// 	}
+		// })()
+
+		// var b = (function(){
+		// 	var show = document.getElementById('show');
+		// 	return Event.listen('add',function(count){
+		// 		show.innerHTML = count;
+		// 	})
+		// })()
+		// document.getElementById('off').onclick = function(){
+		// 	Event.remove('add',b)
+		// }
+		// 
+		var Event = (function(){
+			var global = this,
+				Event,
+				_default = 'default';
+			Event = function(){
+				var _listen,
+					_trigger,
+					_remove,
+					_slice = Array.prototype.slice,
+					_shift = Array.prototype.shift,
+					_unshift = Array.prototype.unshift,
+					namespaceCache = {},
+					_create,
+					find,
+					each = function(arr,fn){
+						var ret;
+						for(var i = 0,len = arr.length;i<len;i++){
+							var n = arr[i];
+							ret = fn.call(n,i,n)
+						}
+						return ret;
+					};
+				_listen = function(key,fn,cache){
+					if(!cache[key]){
+						cache[key] = []
+					}
+					cache[key].push(fn)
+				}//cache means namespace
+
+				_remove = function(key,cache,fn){
+					if(cache[key]){
+						if(fn){
+							for(var i = cache[key].length-1;i>=0;i--){
+								if(cache[key][i] == fn){
+									cache[key].splice(i,1)
+								}
+							}
+						}else{
+							cache[key].length = 0;
+						}
+					}
+				}
+
+				_trigger = function(){
+					var cache = _shift.call(arguments),
+						key = _shift.call(arguments),
+						args = arguments,
+						_self = this,
+						ret,
+						stack = cache[key];
+					if(!stack||!stack.length){
+						return false;
+					}
+
+					return each(stack,function(){
+						return this.apply(_self,args)
+					})
+				}
+
+				_create = function(namespace){
+					var namespace = namespace||_default;
+					var cache = {},
+						offlineStack = [],
+						ret = {
+							listen:function(key,fn,last){
+								_listen(key,fn,cache);
+								if (offlineStack == null) {
+									return false;
+								}
+								if (last=="last") {
+									offlineStack.length&&offlineStack.pop();
+								}else{
+									each(offlineStack,function(){
+										this();
+									});
+								}
+								offlineStack = null;
+							},
+							one:function(key,fn,last){
+								_remove(key,cache);
+								this.listen(key,fn,last);
+							},
+							remove(key,fn){
+								_remove(key,cache,fn)
+							},
+							trigger:function(){
+								var fn,
+									args,
+									_self = this;
+								_unshift.call(arguments,cache);
+								args = arguments;
+								fn = function(){
+									return _trigger.apply(_self,args)
+								}
+								if (offlineStack) {
+									return offlineStack.push(fn)
+								}
+
+								return fn();
+							}
+						};
+						return namespace?(namespaceCache[namespace]?namespaceCache[namespace]:namespaceCache[namespace] = ret):ret
+				}
+
+				return {
+					create:_create,
+					one:function(key,fn,last){
+						var event = this.create( );
+						event.one(key,fn,last)
+					},
+					remove:function(key,fn){
+						var event = this.create( );
+						event.remove(key,fn)
+					},
+					listen:function(key,fn,last){
+						var event = this.create( );
+						event.listen(key,fn,last)
+					},
+					trigger:function(){
+						var event = this.create();
+						event.trigger.apply(this,arguments)
+					}
+				}
+
+			}
+			return Event();
+		})()
+		Event.listen('click',function(a){
+			console.log(a)
+		})
+		Event.trigger('click',"1");
+
+	</script>
+</body>
+</html>

@@ -49,14 +49,14 @@
 				if (self.step() === false) {
 					clearInterval(timeId);
 				}
-			},19)
+			},20)
 		}
 		Animate.prototype.step = function(){
 			var t = +new Date;
 			if (t>=this.startTime+this.duration) {
 				this.update(this.endPos);
 				return false;
-			}
+			}//完成动画
 
 			var pos = this.easing(t-this.startTime,this.startPos,this.endPos-this.startPos,this.duration)
 			this.update(pos)
